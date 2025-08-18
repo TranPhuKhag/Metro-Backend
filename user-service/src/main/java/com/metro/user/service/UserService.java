@@ -29,4 +29,6 @@ public interface UserService {
 
     @PreAuthorize("hasAuthority('user:unban')")
     void unBanUser(Long id);
-}
+
+    boolean updateUserVerificationStatus (Long userId, boolean status);
+    }
