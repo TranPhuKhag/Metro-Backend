@@ -173,4 +173,11 @@ public class UserServiceImpl implements UserService {
                 .currentPage(filter.getPage())
                 .build();
     }
+    public boolean updateUserVerificationStatus (Long userId, boolean status) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        user.setStudentVerified(status);
+        userRepository.save(user);
+        return true;
+    }
 }

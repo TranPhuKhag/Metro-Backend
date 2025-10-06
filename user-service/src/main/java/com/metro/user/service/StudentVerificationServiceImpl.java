@@ -86,6 +86,7 @@ public class StudentVerificationServiceImpl implements StudentVerificationServic
                 .orElseThrow(() -> new AppException(ErrorCode.STUDENT_VERIFICATION_NOT_FOUND));
         studentVerificationMapper.updateEntity(request, entity);
         entity = studentVerificationRepository.save(entity);
+        userService.updateUserVerificationStatus(entity.getUser().getId(), true);
         return studentVerificationMapper.toResponse(entity);
     }
 
